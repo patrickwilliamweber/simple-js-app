@@ -25,4 +25,8 @@ else if (pokemonList[i].height < 1 && pokemonList[i].height >=0.5)
 {
 (document.write(pokemonList[i].name));
 }
+else
+{
+(document.write("Pikachu"))
+}
 }
