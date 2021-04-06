@@ -1,4 +1,4 @@
-et pokemonList = [
+let pokemonList = [
 {
 name: 'Charizard',
 height: 1.7,
