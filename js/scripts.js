@@ -1,4 +1,4 @@
-pokemonList = [
+et pokemonList = [
 {
 name: 'Charizard',
 height: 1.7,
@@ -24,4 +24,5 @@ document.write(pokemonList[i].name + "Wow, that's big!");
 else if (pokemonList[i].height < 1 && pokemonList[i].height >=0.5)
 {
 (document.write(pokemonList[i].name));
+}
 }
