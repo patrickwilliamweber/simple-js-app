@@ -1,5 +1,4 @@
-let pokemonRespiratory = (function () {
-  let pokemonList = [
+let pokemonList = [
 {
 name: 'Charizard',
 height: 1.7,
@@ -16,19 +15,6 @@ height: 0.4,
 types: 'electric'},
 ];
 
-function getAll(){
-  return pokemonList;
-}
-
-function add(pokemon) {
-  pokemonList.push(pokemon);
-}
-
-return {
-  getAll: getAll.
-  add: add
-
-};
-}}();
-
-console.log( pokemonrespiiratory.getAll() );
+pokemonList.forEach(function(pokemon) {
+  console.log(pokemon.name);
+});
