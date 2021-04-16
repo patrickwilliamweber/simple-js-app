@@ -1,4 +1,5 @@
-let pokemonList = [
+let pokemonRespiratory = (function () {
+  let pokemonList = [
 {
 name: 'Charizard',
 height: 1.7,
@@ -15,18 +16,19 @@ height: 0.4,
 types: 'electric'},
 ];
 
-for (let i = 0; i <= pokemonList.length; i++)
-{
-if (pokemonList[i].height <2 && pokemonList[i].height >1)
-{
-document.write(pokemonList[i].name + "Wow, that's big!");
+function getAll(){
+  return pokemonList;
 }
-else if (pokemonList[i].height < 1 && pokemonList[i].height >=0.5)
-{
-(document.write(pokemonList[i].name));
+
+function add(pokemon) {
+  pokemonList.push(pokemon);
 }
-else
-{
-(document.write("Pikachu"))
-}
-}
+
+return {
+  getAll: getAll.
+  add: add
+
+};
+}}();
+
+console.log( pokemonrespiiratory.getAll() );
