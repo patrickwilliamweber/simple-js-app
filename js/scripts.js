@@ -1,20 +1,34 @@
-let pokemonList = [
-{
-name: 'Charizard',
-height: 1.7,
-types: 'fire,flying'
-},
-{
-name: 'Squirtle',
-height: 0.5,
-types: 'water'
-},
-{
-name: 'Pikachu',
-height: 0.4,
-types: 'electric'},
-];
+var pokemonRepository = (function () {
+  var pokemonList = [
+    {
+      name: 'Charizard',
+      height: 1.7,
+      types: 'fire,flying'
+    },
+    {
+      name: 'Squirtle',
+      height: 0.5,
+      types: 'water'
+    },
+    {
+      name: 'Pikachu',
+      height: 0.4,
+      types: 'electric'
+    }
+  ];
 
-pokemonList.forEach(function(pokemon) {
-  console.log(pokemon.name);
-});
+  function getAll() {
+    return pokemonList;
+  }
+
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  return {
+    getAll: getAll,
+    add: add
+  };
+})();
+
+console.log(pokemonRepository.getAll() );
