@@ -33,6 +33,10 @@ var pokemonRepository = (function () {
     button.classList.add("button-class");
     pokemonList.appendChild(listpokemon);
   }
+
+function ShowDetails {
+  console.log();
+}
     return {
      add: add,
      getAll: getAll
