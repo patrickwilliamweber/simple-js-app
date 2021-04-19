@@ -27,15 +27,13 @@ var pokemonRepository = (function () {
   function addListItem (pokemon){
     let pokemon-File = document.querySelector('.pokemon-File');
     let button = document.createElement('button');
+    button.addEventListener('click', function (event) {
+      event.ShowDetails();
     button.innerText = pokemon.name;
     button.classList.add("button-class");
     pokemonList.appendChild(listpokemon);
   }
-  function ShowDetails(pokemon) {
-    console.log()
-
-  }
-   return {
+    return {
      add: add,
      getAll: getAll
      addListItem: addListItem
