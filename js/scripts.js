@@ -1,21 +1,49 @@
 var pokemonRepository = (function () {
-  var pokemonList = [
-    {
-      name: 'Charizard',
-      height: 1.7,
-      types: 'fire,flying'
-    },
-    {
-      name: 'Squirtle',
-      height: 0.5,
-      types: 'water'
-    },
-    {
-      name: 'Pikachu',
-      height: 0.4,
-      types: 'electric'
-    }
-  ];
+  var pokemonList = [];
+let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+
+ // Other functions remain here
+
+ function loadList() {
+   return fetch(apiUrl).then(function (response) {
+     return response.json();
+   }).then(function (json) {
+     json.results.forEach(function (item) {
+       let pokemon = {
+         height: item.height,
+         imageUrl: item.url
+       };
+       add(pokemon);
+     });
+   }).catch(function (e) {
+     console.error(e);
+   })
+ }
+
+ return {
+   add: add,
+   getAll: getAll,
+   loadList: loadList 
+ };
+})();
+
+pokemonRepository.loadList().then(function() {
+ // Now the data is loaded!
+ pokemonRepository.getAll().forEach(function(pokemon){
+   pokemonRepository.addListItem(pokemon);
+ });
+});
+  }
+
+
+
+
+
+
+
+
+
+
 
   function getAll() {
     return pokemonList;
@@ -35,8 +63,10 @@ var pokemonRepository = (function () {
   }
 
 function ShowDetails {
+
   console.log();
 }
+
     return {
      add: add,
      getAll: getAll
