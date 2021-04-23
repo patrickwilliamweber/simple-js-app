@@ -25,7 +25,7 @@ button.addEventListener('click', function (event) {
  });
 }
 
-  function LoadList () {
+  function loadList () {
     return fetch(apiUrl).then(function(response) {
     return response.json();
   }).then(function (json) {
@@ -42,7 +42,7 @@ button.addEventListener('click', function (event) {
   })
 }
 
- function LoadDetails(item) {
+ function loadDetails(item) {
   let url = item.detailsUrl;
   return fetch(url).then(function (response) {
   return response.json();
@@ -158,8 +158,6 @@ modalContainer.addEventListener('click', (e) => {
   showModal('Modal title', 'This is the modal content!');
 });
 
-})();
-
 
   function ShowDetails(pokemon) {
     pokemonRepository.loadDetails(pokemon).then(function() {
@@ -193,8 +191,8 @@ modalContainer.addEventListener('click', (e) => {
        add: add,
        getAll: getAll,
        addListItem: addListItem,
-       loadList: loadList,
-       loadDetails: loadDetails,
+       loadList: LoadList,
+       loadDetails: LoadDetails,
        ShowDetails: ShowDetails
 
 
