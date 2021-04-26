@@ -35,14 +35,13 @@ button.addEventListener('click', function (event) {
     detailsUrl: item.url
   };
     add(pokemon);
-    console.log(pokemon);
   });
   }).catch(function (e) {
     console.error(e);
   })
 }
 
- function loadDetails(item) {
+ function loadDetails(pokemon) {
   let url = item.detailsUrl;
   return fetch(url).then(function (response) {
   return response.json();
@@ -56,15 +55,13 @@ button.addEventListener('click', function (event) {
   })
 }
 
-document.querySelector('#show-modal').addEventListener('click', () => {
-  showModal();
-});
-
-function showModal(title, text) {
+function showModal(pokemon) {
   // Clear all existing modal content
-  modalContainer.innerHTML = '';
-  let modal = document.createElement('div');
-  modal.classList.add('modal');
+  titleElement.innerText = pokemon.name;
+  contentElement.innerText = pokemon.height;
+  contentElement.innerText = pokemon.type;
+  contentElement.innerText = pokemon.image;
+  contentElement.innerText = pokemon.abilities;
 
   // Add the new modal content
   let closeButtonElement = document.createElement('button');
@@ -85,85 +82,40 @@ function showModal(title, text) {
 
   modalContainer.classList.add('is-visible');
 }
-function showDialog(title, text) {
-  showModal(title, text);
 
-  // We have defined modalContainer here
-  let modalContainer = document.querySelector('#modal-container');
+  function hideModal() {
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.classList.remove('is-visible');
 
-  // We want to add a confirm and cancel button to the modal
-  let modal = modalContainer.querySelector('.modal');
-
-  let confirmButton = document.createElement('button');
-  confirmButton.classList.add('modal-confirm');
-  confirmButton.innerText = 'Confirm';
-
-  let cancelButton = document.createElement('button');
-  cancelButton.classList.add('modal-cancel');
-  cancelButton.innerText = 'Cancel';
-
-  modal.appendChild(confirmButton);
-  modal.appendChild(cancelButton);
-
-  // We want to focus the confirmButton so that the user can simply press Enter
-  confirmButton.focus();
-  return new Promise((resolve, reject) => {
-  cancelButton.addEventListener('click', hideModal);
-  confirmButton.addEventListener('click', () => {
-    dialogPromiseReject = null; // Reset this
-    hideModal();
-    resolve();
-  });
-  // This can be used to reject from other functions
-  dialogPromiseReject = reject;
-});
-}
-
-function hideModal() {
-  let modalContainer = document.querySelector('#modal-container');
-  modalContainer.classList.remove('is-visible');
-
-  if (dialogPromiseReject) {
-    dialogPromiseReject();
-    dialogPromiseReject = null;
+    if (dialogPromiseReject) {
+      dialogPromiseReject();
+      dialogPromiseReject = null;
   }
 }
 
-document.querySelector('#show-dialog').addEventListener('click', () => {
-  showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
-    alert('confirmed!');
-  }, () => {
-    alert('not confirmed');
-  });
-});
 
-window.addEventListener('keydown', (e) => {
+    window.addEventListener('keydown', (e) => {
 
-  if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-    hideModal();
+      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+        hideModal();
   }
 });
 
 
-modalContainer.addEventListener('click', (e) => {
-  // Since this is also triggered when clicking INSIDE the modal
-  // We only want to close if the user clicks directly on the overlay
-  let target = e.target;
-  if (target === modalContainer) {
-    hideModal();
-  }
+    modalContainer.addEventListener('click', (e) => {
+      // Since this is also triggered when clicking INSIDE the modal
+      // We only want to close if the user clicks directly on the overlay
+      let target = e.target;
+      if (target === modalContainer) {
+        hideModal();
+      }
 });
-
-  document.querySelector('#show-modal').addEventListener('click', () => {
-  showModal('Modal title', 'This is the modal content!');
-});
-
 
   function ShowDetails(pokemon) {
-    pokemonRepository.loadDetails(pokemon).then(function() {
-      let modalBody = $('.modal-body');
-      let modalTitle = $('.modal-title');
-
+      pokemonRepository.loadDetails(pokemon).then(function(){
+      showModal(pokemon);
+      });
+      }
       modalTitle.empty();
       modalBody.empty();
 
@@ -187,16 +139,20 @@ modalContainer.addEventListener('click', (e) => {
     });
   }
 
-  return{
-       add: add,
-       getAll: getAll,
-       addListItem: addListItem,
-       loadList: LoadList,
-       loadDetails: LoadDetails,
-       ShowDetails: ShowDetails
-
-
-   };
+      return{
+      add: add,
+      getAll: getAll,
+      addListItem: addListItem,
+      loadList: loadList,
+      loadDetails: loadDetails,
+      ShowDetails: ShowDetails
+      };
 
 
 })();
+
+pokemonRepository.loadList().then(function() {
+pokemonRepository.getAll().forEach(function(pokemon) {
+pokemonRepository.addListItem(pokemon);
+});
+});
