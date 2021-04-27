@@ -54,32 +54,10 @@ function LoadDetails(pokemon) {
 }
 
 function ShowDetails(pokemon) {
-  pokemonRepository.LoadDetails(pokemon).then(function () {
-    let modalBody = $('.modal-body');
-       let modalTitle = $('.modal-title');
-
-       modalTitle.empty();
-       modalBody.empty();
-
-       let pokemonName = $('<h1>' + pokemon.name + '</h1>');
-       let pokemonImage = $('<img class="modal-img" style="width:50%">');
-       pokemonImage.attr('src', pokemon.imageUrl);
-       let pokemonHeight = $('<p>' + 'Height: ' + pokemon.height + '</p>');
-       let pokemonTypes = document.createElement('span');
-       let types = 'Types: ';
-       pokemon.types.forEach(function(item) {
-         types += item.type.name + ' ';
-       });
-       pokemonTypes.innerHTML = types;
-
-       modalTitle.append(pokemonName);
-       modalBody.append(pokemonImage);
-       modalBody.append(pokemonHeight);
-       modalBody.append(pokemonTypes);
-
-       $('#pokemonModal').modal('toggle');
+  pokemonRepository.LoadDetails(pokemon).then(function(){
+  showModal(pokemon);
   });
-}
+  }
 
 function addListItem (pokemon){
   let pokemonList = document.querySelector('.pokemon-list');
@@ -95,13 +73,13 @@ function addListItem (pokemon){
   });
 }
 
-function showModal() {
+function showModal(pokemon) {
 
   modalContainer.classList.add('is-visible');
 }
 
 document.querySelector('.pokemon-list').addEventListener('click', () => {
-   showModal();
+   showModal(pokemon);
 });
 
 function showModal(title, text) {
@@ -120,10 +98,10 @@ function showModal(title, text) {
   closeButtonElement.addEventListener('click', hideModal);
 
   let titleElement = document.createElement('h1');
-  titleElement.innerText = title;
+  titleElement.innerText = pokemon.name;
 
   let contentElement = document.createElement('p');
-  contentElement.innerText = text;
+  contentElement.innerText = pokemon.height;
 
   modal.appendChild(closeButtonElement);
   modal.appendChild(titleElement);
@@ -132,10 +110,6 @@ function showModal(title, text) {
 
   modalContainer.classList.add('is-visible');
 }
-
-document.querySelector('.pokemon-list').addEventListener('click', () => {
-  showModal('PLACE TITLE HERE', 'PLACE TEXT HERE');
-});
 
 function hideModal() {
 
