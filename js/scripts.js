@@ -46,7 +46,7 @@ return fetch(url).then(function (response) {
 return response.json();
 }).then(function (details) {
 // Now we add the details to the item
-item.imageUrl = details.sprites.front_defaults;
+item.imageUrl = details.sprites.front_default;
 item.height = details.height;
 item.types = details.types;
 }).catch(function (e) {
@@ -71,9 +71,17 @@ titleElement.innerText = pokemon.name;
 let contentElement = document.createElement('p');
 contentElement.innerText = pokemon.height;
 
+
+let container = document.querySelector('#modal-container');
+
 // Create an <img> element
 let myImage = document.createElement('img');
-contentElement.innerText = pokemon.sprites.front_defaults;
+
+// setting `src` property to set the actual element's `src` attribute
+// this also works on <img> elements selected by querySelector() method, it is not specific for <img> elements created with createElement() methods
+myImage.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png';
+
+modal.appendChild(myImage);
 
 modal.appendChild(closeButtonElement);
 modal.appendChild(titleElement);
