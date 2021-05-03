@@ -79,7 +79,7 @@ let myImage = document.createElement('img');
 
 // setting `src` property to set the actual element's `src` attribute
 // this also works on <img> elements selected by querySelector() method, it is not specific for <img> elements created with createElement() methods
-myImage.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png';
+myImage.src = pokemon.imageUrl;
 
 modal.appendChild(myImage);
 
