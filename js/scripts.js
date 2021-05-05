@@ -12,15 +12,15 @@ pokemonList.push(pokemon);
 }
 
 function addListItem (pokemon){
-let pokemonFile = document.querySelector('.pokemon-list');
-let listItem = document.createElement('li');
-let button = document.createElement('button');
-button.innerText = pokemon.name;
-button.classList.add("button-class");
-listItem.appendChild(button);
-pokemonFile.appendChild(listItem);
-button.addEventListener('click', function (event) {
-ShowDetails(pokemon);
+  let pokemonFile = document.querySelector('.pokemon-list');
+  let listItem = document.createElement('li');
+  let button = document.createElement('button');
+  button.innerText = pokemon.name;
+  button.classList.add("button-class");
+  listItem.appendChild(button);
+  pokemonFile.appendChild(listItem);
+  button.addEventListener('click', function (event) {
+  ShowDetails(pokemon);
 });
 }
 
