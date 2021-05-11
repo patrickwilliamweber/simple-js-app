@@ -87,7 +87,7 @@ function showDetails(pokemon) {
   modalBody.appendChild(imageElementFront);
 
   // Create element for weight within modal content.
-  Let heightElement = $("<p>"+"height : " + pokemon.height + "</p>");
+  let heightElement = $("<p>"+"height : " + pokemon.height + "</p>");
   modalBody.appendChild(heightElement);
 
   // Create element for type within the modal content.
