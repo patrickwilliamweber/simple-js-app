@@ -41,6 +41,7 @@ function loadList () {
   }).catch(function(err){
     console.log('Caught an error:' + err.statusText);
   })
+  }
 
 function loadDetails(item) {
   let url = item.detailsUrl;
