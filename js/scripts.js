@@ -30,7 +30,7 @@ function loadList () {
   $.ajax('apiUrl', { dataType: 'json'}).then(function(response) {
   console.log(responseJSON);
   })
-  }).then(function(json) {
+  .then(function(json) {
   json.results.forEach(function(item) {
     let pokemon = {
     name: item.name,
@@ -40,21 +40,23 @@ function loadList () {
   });
   }).catch(function(err){
     console.log('Caught an error:' + err.statusText);
-  }
+  })
 
 function loadDetails(item) {
   let url = item.detailsUrl;
-  $('url', { dataType: 'json'})then(function (response) {
-  console.log(responseJSON);
-  }).then(function (details) {
-  // Now we add the details to the item
-  item.imageUrl = details.sprites.front_default;
-  item.height = details.height;
-  item.types = details.types;
-}).catch(function(err){
-  console.log('Caught an error:' + err.statusText);
+      $('url', { dataType: 'json'}).then(function (response) {
+      console.log(responseJSON);
+    })
+      .then(function (details) {
+      // Now we add the details to the item
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    })
+    .catch(function(err){
+      console.log('Caught an error:' + err.statusText);
+  });
 }
-})
 // show the details of pokemon
 function showDetails(pokemon) {
   pokemonRepository.loadDetails(pokemon).then(function() {
