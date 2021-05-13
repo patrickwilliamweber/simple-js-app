@@ -24,11 +24,16 @@ function addListItem (pokemon){
    button.on("click", function(event){
    showDetails(pokemon);
   });
+<<<<<<< HEAD
+=======
+}
+>>>>>>> 19e6b75128dcce9334c69dc9e8b26f5a3449f5b1
 }
 
 function loadList () {
   $.ajax('apiUrl', { dataType: 'json'}).then(function(response) {
   console.log(responseJSON);
+<<<<<<< HEAD
   })
   }).then(function(json) {
   json.results.forEach(function(item) {
@@ -40,6 +45,20 @@ function loadList () {
   });
   }).catch(function(err){
     console.log('Caught an error:' + err.statusText);
+=======
+  });
+  }).then(function (json) {
+  json.results.forEach(function (item) {
+  let pokemon = {
+  name: item.name,
+  detailsUrl: item.url
+};
+  add(pokemon);
+  });
+  }).catch(function(err){
+    console.log('Caught an error:' + err.statusText);
+  });
+>>>>>>> 19e6b75128dcce9334c69dc9e8b26f5a3449f5b1
   }
 
 function loadDetails(item) {
@@ -51,8 +70,14 @@ function loadDetails(item) {
   item.imageUrl = details.sprites.front_default;
   item.height = details.height;
   item.types = details.types;
+<<<<<<< HEAD
 }).catch(function(err){
   console.log('Caught an error:' + err.statusText);
+=======
+  }).catch(function (e) {
+  console.error(e);
+})
+>>>>>>> 19e6b75128dcce9334c69dc9e8b26f5a3449f5b1
 }
 
 // show the details of pokemon
