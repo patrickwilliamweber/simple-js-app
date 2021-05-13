@@ -44,8 +44,8 @@ function loadList () {
 
 function loadDetails(item) {
   let url = item.detailsUrl;
-  return fetch(url).then(function (response) {
-  return response.json();
+  $('url', { dataType: 'json'})then(function (response) {
+  console.log(responseJSON);
   }).then(function (details) {
   // Now we add the details to the item
   item.imageUrl = details.sprites.front_default;
@@ -81,28 +81,29 @@ function showDetails(pokemon) {
     let typesElement = $("</p>" + "types : " + pokemon.types + "</p>");
 
 
-    modalBody.appendChild(typesElement);
+    modalTitle.append(nameElement);
+    modalBody.append(imageElementFront);
+    modalBody.append(heightElement);
+    modalBody.append(typesElement);
 
-    modalContainer.appendChild(modal);
 
      $('#pokemonModal').modal('toggle');
-    });
+  });
 }
 
 
 return{
-add: add,
-getAll: getAll,
-addListItem: addListItem,
-loadList: loadList,
-loadDetails: loadDetails,
-showDetails: showDetails
-};
-
+  add: add,
+  getAll: getAll,
+  addListItem: addListItem,
+  loadList: loadList,
+  loadDetails: loadDetails,
+  showDetails: showDetails
+  };
 })();
 
 pokemonRepository.loadList().then(function() {
-pokemonRepository.getAll().forEach(function(pokemon) {
-pokemonRepository.addListItem(pokemon);
-});
+  pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
 });
