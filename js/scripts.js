@@ -25,7 +25,7 @@ function addListItem (pokemon){
 }
 function loadList() {
   /*return*/
-  $.ajax(apiUrl, { dataType: 'json'}).then(function(response) {
+  return $.ajax(apiUrl, { dataType: 'json'}).then(function(response) {
   return response;
   })
   .then(function(json) {
