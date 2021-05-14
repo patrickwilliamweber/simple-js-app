@@ -8,21 +8,21 @@ function getAll() {
 function add(pokemon){
   pokemonList.push(pokemon);
 }
+
 function addListItem (pokemon){
   let listPokemon = $('.pokemon-list-item');
   let listItem = $('<li></li>');
-  listItem.addClass('pokemon-list-item pokemon-list-item-action');
   let button = $('<button></button>');
-  button.addClass('btn btn-dark btn-block');
-   button.attr({"data-target":"#pokemonModal","data-toggle":"modal"})
+  button.attr({"data-target":"#pokemonModal","data-toggle":"modal"})
   button.text(pokemon.name);
-   listItem.appendTo(listPokemon);
-   button.appendTo(listItem);
+  listPokemon.append(listItem);
+  listItem.append(button);
     //add event listener to our items button that show details
-   button.on("click", function(){
+  button.on("click", function(){
     showDetails(pokemon);
   });
 }
+
 function loadList() {
   /*return*/
   return $.ajax(apiUrl, { dataType: 'json'}).then(function(response) {
