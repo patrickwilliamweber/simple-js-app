@@ -1,5 +1,5 @@
 let pokemonRepository = (function () {
-let modalContainer = $("#modal-container");
+let modalContainer = $("#pokemonModal");
 let pokemonList = [];
 let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 function getAll() {
