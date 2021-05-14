@@ -12,7 +12,7 @@ function add(pokemon){
 }
 
 function addListItem (pokemon){
-  let listPokemon = $('pokemon-list')[0]
+  let listPokemon = $('pokemon-list-item')[0]
   listPokemon.parent();
   const name = (pokemon.name);
   let listItem = $('<li class="pokemon-list-item" class="pokemon-list-item-action" >name[0].toUpperCase();</li>');
