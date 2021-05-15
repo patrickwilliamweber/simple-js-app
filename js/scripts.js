@@ -5,6 +5,7 @@ let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 function getAll() {
   return pokemonList;
 }
+
 function add(pokemon){
   pokemonList.push(pokemon);
 }
@@ -12,7 +13,7 @@ function add(pokemon){
 function addListItem (pokemon){
   let listPokemon = $('.pokemon-list-item');
   let listItem = $('<li></li>');
-  let button = $('<button></button>');
+  let button = $('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pokemonModal"></button>');
   button.attr({"data-target":"#pokemonModal","data-toggle":"modal"})
   button.text(pokemon.name);
   listPokemon.append(listItem);
@@ -40,6 +41,7 @@ function loadList() {
     console.log('Caught an error:' + err.statusText);
   })
   }
+
 function loadDetails(item) {
   let url = item.detailsUrl;
       return $.ajax(url, { dataType: 'json'}).then(function (response) {
@@ -74,6 +76,7 @@ function showDetails(pokemon) {
     modalBody.appendChild(heightElement);
   // Create element for type within the modal content.
     let typesElement = $("</p>" + "types : " + pokemon.types + "</p>");
+    
     modalTitle.append(nameElement);
     modalBody.append(imageElementFront);
     modalBody.append(heightElement);
@@ -81,6 +84,13 @@ function showDetails(pokemon) {
      $('#pokemonModal').modal('toggle');
   });
 }
+
+$('[data-toggle="modal"]').on('click', function(){
+  let targetSelector = $(this).attr('data-target');
+  $(targetSelector).modal('show'); // Bootstrap’s own function to make the modal appear
+});
+
+
 return{
   add: add,
   getAll: getAll,
@@ -90,6 +100,8 @@ return{
   showDetails: showDetails
   };
 })();
+
+
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon);
