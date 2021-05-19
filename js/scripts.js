@@ -66,21 +66,24 @@ function showDetails(pokemon) {
     modalBody.empty();
  // Create eLement for name within the modal content.
     let nameElement = $('<h1>' + pokemon.name + '</h1>');
-    modalTitle.appendChild(nameElement);
+    modalTitle.append(nameElement);
   // Create eLement for image within the modal content.
     let imageElementFront = $("<img class='modal-img' style = 'width:50%'>");
     imageElementFront.attr("src", pokemon.imageUrl);
-    modalBody.appendChild(imageElementFront);
+    modalBody.append(imageElementFront);
   // Create element for weight within modal content.
     let heightElement = $("<p>"+"height : " + pokemon.height + "</p>");
-    modalBody.appendChild(heightElement);
-  // Create element for type within the modal content.
-    let typesElement = $("</p>" + "types : " + pokemon.types + "</p>");
-    
-    modalTitle.append(nameElement);
-    modalBody.append(imageElementFront);
     modalBody.append(heightElement);
+  // Create element for type within the modal content.
+    const pokemonTypes = [];
+    for (let i = 0; i < pokemon.types.length; i++) {
+      pokemonTypes.push(pokemon.types[i].type.name);
+    }
+    let typesElement = $("</p>" + "types : " + pokemonTypes + "</p>");
+    console.log(pokemonTypes)
+
     modalBody.append(typesElement);
+
      $('#pokemonModal').modal('toggle');
   });
 }
