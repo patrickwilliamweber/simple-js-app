@@ -43,5 +43,9 @@ button {
 
 .navbar-fixed-top{
         text-align: center !important;
-        padding: 50px important;
-}        
+        padding: 50px !important;
+        }
+
+ .pokemon-list-item {
+text-transform: capitalize !important;
+        }
