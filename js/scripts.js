@@ -12,6 +12,8 @@ let pokemonRepository = (function () {
   function addListItem(pokemon) {
     let listPokemon = $('.pokemon-list-item');
     let listItem = $('<li></li>');
+    const publication = ('<li></li>');
+publication[0].toUpperCase() + publication.substring(1);
     let button = $(
       '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pokemonModal"></button>'
     );
