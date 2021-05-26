@@ -12,15 +12,19 @@ let pokemonRepository = (function () {
   function addListItem(pokemon) {
     let listPokemon = $('.pokemon-list-item');
     let listItem = $('<li></li>');
-    const listItemCapitalized = listItem.charAt(0).toUpperCase() + listItem.slice(1)
+    const listItemCapitalized = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+
+    
+
     let button = $(
       '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pokemonModal"></button>'
     );
     button.attr({ 'data-target': '#pokemonModal', 'data-toggle': 'modal' });
     button.text(pokemon.name);
     listPokemon.append(listItem);
+    button.text(listItemCapitalized);
     listItem.append(button);
-    //add event listener to our items button that show details
+     //add event listener to our items button that show details
     button.on('click', function () {
       showDetails(pokemon);
     });
@@ -70,7 +74,7 @@ let pokemonRepository = (function () {
       modalTitle.empty();
       modalBody.empty();
       // Create eLement for name within the modal content.
-      let nameElement = $('<h1>' + pokemon.name + '</h1>');
+      let nameElement = $('<h1>' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</h1>');
       modalTitle.append(nameElement);
       // Create eLement for image within the modal content.
       let imageElementFront = $('<img class=\'modal-img\' style = \'width:50%\'>');
